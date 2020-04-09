@@ -11,10 +11,9 @@ namespace TrabajoPracticas.Models
 
         }
 
-        public Usuario(int usuarioId, string nombre, string apellidos, string nombreusuario, string correo, string password) {
+        public Usuario(int usuarioId, string nombre, string nombreusuario, string correo, string password) {
             UsuarioId = usuarioId;
             Nombre = nombre;
-            Apellidos = apellidos;
             Nombreusuario = nombreusuario;
             Correo = correo;
             Password = password;
@@ -22,7 +21,6 @@ namespace TrabajoPracticas.Models
 
         public int UsuarioId { get; set; }
         public string Nombre { get; set; }
-        public string Apellidos { get; set; }
         public string Nombreusuario { get; set; }
         public string Correo { get; set; }
         public string Password { get; set; }
@@ -32,5 +30,21 @@ namespace TrabajoPracticas.Models
         public List<Videojuego> Videojuegos { get; set; }
         public List<Manga_Comic> Mangas_Comics { get; set; }
         public List<Anime> Animes { get; set; }
+    }
+
+    public class UsuarioDTO
+    {
+        public UsuarioDTO() {
+
+        }
+
+        public UsuarioDTO(string nombre, string nombreusuario) {
+            Nombre = nombre;
+            Nombreusuario = nombreusuario;
+        }
+
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public string Nombreusuario { get; set; }
     }
 }

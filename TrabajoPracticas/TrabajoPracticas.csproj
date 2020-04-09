@@ -297,6 +297,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +305,14 @@
     <Compile Include="Migrations\20200408120349_m1.cs" />
     <Compile Include="Migrations\20200408120349_m1.designer.cs">
       <DependentUpon>20200408120349_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200409093441_m2.cs" />
+    <Compile Include="Migrations\20200409093441_m2.designer.cs">
+      <DependentUpon>20200409093441_m2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200409115557_m3.cs" />
+    <Compile Include="Migrations\20200409115557_m3.designer.cs">
+      <DependentUpon>20200409115557_m3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ReviewZoneContextModelSnapshot.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -318,6 +327,7 @@
     <Compile Include="Models\Videojuego.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

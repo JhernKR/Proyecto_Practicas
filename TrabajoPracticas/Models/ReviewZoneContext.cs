@@ -13,6 +13,7 @@ namespace TrabajoPracticas.Models
         public DbSet<Videojuego> Videojuegos { get; set; }
         public DbSet<Manga_Comic> Mangas_Comics { get; set; }
         public DbSet<Anime> Animes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public ReviewZoneContext() {
 
@@ -29,7 +30,7 @@ namespace TrabajoPracticas.Models
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Usuario>().HasData(new Usuario(1, "Josep", "Hernandez", "joheto", "joheto@gmail.com", "1234"));
+            modelBuilder.Entity<Usuario>().HasData(new Usuario(1, "Josep", "joheto", "joheto@gmail.com", "1234"));
             modelBuilder.Entity<Serie>().HasData(new Serie(1, "Community", 35, "20 min", "Un abogado que es revocado debe regresar a la universidad el grupo que junta comienza a reunirse y a aprender uno del otro.",
                 "Muy divertida", 9, "Joel McHale, Danny Pudi, Gillian Jacobs, Chevy Chase, Alison Brie", "Dan Harmon", "Dan Harmon", "NBC", "Comedia", false, 1));
             modelBuilder.Entity<Pelicula>().HasData(new Pelicula(1, "El club de la lucha", "139 min", "Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje conoce a un carismático vendedor de jabón que sostiene una teoría muy particular",
