@@ -48,6 +48,16 @@ namespace TrabajoPracticas.Repositories
 
         }
 
+        internal Usuario ComprobarUsuario(string correo, string pass)
+        {
+            Usuario usuario = new Usuario();
+            using (ReviewZoneContext context = new ReviewZoneContext())
+            {
+                usuario = context.Usuarios.Where(p => p.Nombreusuario == correo && p.Password == pass).FirstOrDefault();
+            }
+            return usuario;
+        }
+
         internal string Save(Usuario usu) {
 
             CultureInfo cullInfo = new System.Globalization.CultureInfo("es-ES");

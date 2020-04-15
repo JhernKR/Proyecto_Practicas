@@ -32,6 +32,13 @@ namespace TrabajoPracticas.Controllers
             return usuario;
         }
 
+        public Usuario Get(string nom_usu, string pass)
+        {
+            var repo = new UsuarioRepository();
+            Usuario usuario = repo.ComprobarUsuario(nom_usu, pass);
+            return usuario;
+        }
+
         // POST: api/Usuario
         public string Post([FromBody]Usuario usuario)
         {
