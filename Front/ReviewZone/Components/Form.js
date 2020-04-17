@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Dimensions from 'Dimensions';
+//import Dimensions from 'Dimensions';
 import {
   StyleSheet,
   KeyboardAvoidingView,
@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 import UserInput from './UserInput';
-import ButtonSubmit from './ButtonSubmit';
-import SignupSection from './SignupSection';
+import BotonEnviar from './BotonEnviar';
+import SignUpSection from './SignUpSection';
 
 import usernameImg from '../Imagenes/username.png';
 import passwordImg from '../Imagenes/password.png';
@@ -63,8 +63,8 @@ export default class Form extends Component {
   }
 }
 
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
+//const DEVICE_WIDTH = Dimensions.get('window').width;
+//const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {

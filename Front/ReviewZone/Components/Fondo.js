@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Dimensions from 'Dimensions';
+//import Dimensions from 'Dimensions';
 import {StyleSheet, Image} from 'react-native';
 
 import bgSrc from '../Imagenes/fondologin.jpg'
 
-export default class Wallpaper extends Component {
+export default class Fondo extends Component {
   render() {
     return (
       <Image style={styles.picture} source={bgSrc}>

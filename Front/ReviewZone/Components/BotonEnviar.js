@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Dimensions from 'Dimensions';
+//import Dimensions from 'Dimensions';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -15,11 +15,11 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 
 import spinner from '../images/loading.gif';
 
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
+//const DEVICE_WIDTH = Dimensions.get('window').width;
+//const DEVICE_HEIGHT = Dimensions.get('window').height;
 const MARGIN = 40;
 
-export default class ButtonSubmit extends Component {
+export default class BotonEnviar extends Component {
   constructor() {
     super();
 
