@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Image,
+  Dimensions
 } from 'react-native';
 
 import UserInput from './UserInput';
@@ -63,8 +64,8 @@ export default class Form extends Component {
   }
 }
 
-//const DEVICE_WIDTH = Dimensions.get('window').width;
-//const DEVICE_HEIGHT = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width;
+const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {

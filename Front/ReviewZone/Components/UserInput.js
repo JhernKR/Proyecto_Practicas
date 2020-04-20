@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 //import Dimensions from 'Dimensions';
-import {StyleSheet, View, TextInput, Image} from 'react-native';
+import {StyleSheet, View, TextInput, Image, Dimensions} from 'react-native';
 
 export default class UserInput extends Component {
   render() {
@@ -32,8 +32,8 @@ UserInput.propTypes = {
   returnKeyType: PropTypes.string,
 };
 
-//const DEVICE_WIDTH = Dimensions.get('window').width;
-//const DEVICE_HEIGHT = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width;
+const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   input: {

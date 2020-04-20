@@ -10,13 +10,14 @@ import {
   Image,
   Alert,
   View,
+  Dimensions
 } from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux';
 
-import spinner from '../images/loading.gif';
+import spinner from '../Imagenes/loading.gif';
 
-//const DEVICE_WIDTH = Dimensions.get('window').width;
-//const DEVICE_HEIGHT = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width; //411
+const DEVICE_HEIGHT = 731;//Dimensions.get('window').height;
 const MARGIN = 40;
 
 export default class BotonEnviar extends Component {
@@ -47,7 +48,7 @@ export default class BotonEnviar extends Component {
     }, 2000);
 
     setTimeout(() => {
-      Actions.secondScreen();
+      //Actions.secondScreen();
       this.setState({isLoading: false});
       this.buttonAnimated.setValue(0);
       this.growAnimated.setValue(0);
