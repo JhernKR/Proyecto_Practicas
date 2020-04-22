@@ -8,7 +8,29 @@ import BotonEnviar from '../Components/BotonEnviar';
 import SignUpSection from '../Components/SignUpSection';
 
 
-export default class LogIn extends Component {
+export default class LogIn extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      nom_usu: '',
+      password: '',
+      datos: []
+    }
+  }
+
+  textUsu = (usu) => {
+    var regExp = /^[a-zA-ZÀ-ÿ0-9]{2,}$/;
+    (regExp.test(usu)) ? this.setState({nom_usu : usu})
+    : this.setState({nom_usu : ""})
+  }
+
+  textPass = (pass) => {
+    var regExp = /^[a-zA-ZÀ-ÿ0-9]{2,}$/;
+    (regExp.test(pass)) ? this.setState({password : pass})
+    : this.setState({password : ""})
+  }
+
   render() {
     return (
       <Fondo>
@@ -17,7 +39,7 @@ export default class LogIn extends Component {
             <Logo />
           </View>
           <View style={{marginBottom: 20, marginTop: 20}}>
-            <Form />
+            <Form textPass={this.textPass} textUsu={this.textUsu}/>
           </View>
           <View>
             <BotonEnviar />

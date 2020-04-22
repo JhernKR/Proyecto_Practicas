@@ -18,6 +18,7 @@ import SignUpSection from './SignUpSection';
 import usernameImg from '../Imagenes/username.png';
 import passwordImg from '../Imagenes/password.png';
 import eyeImg from '../Imagenes/eye_black.png';
+import PassInput from './PassInput';
 
 export default class Form extends Component {
   constructor(props) {
@@ -44,14 +45,16 @@ export default class Form extends Component {
           autoCapitalize={'none'}
           returnKeyType={'done'}
           autoCorrect={false}
+          textUsu={this.props.textUsu}
         />
-        <UserInput
+        <PassInput
           source={passwordImg}
           secureTextEntry={this.state.mostrarPass}
           placeholder="Password"
           returnKeyType={'done'}
           autoCapitalize={'none'}
           autoCorrect={false}
+          textPass={this.props.textPass}
         />
         <TouchableOpacity
           activeOpacity={0.7}

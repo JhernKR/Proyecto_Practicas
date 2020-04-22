@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 //import Dimensions from 'Dimensions';
 import {StyleSheet, View, TextInput, Image, Dimensions} from 'react-native';
 
-export default class UserInput extends Component {
+import LogIn from '../Screens/LogIn';
+
+export default class PassInput extends Component {
   render() {
     return (
       <View style={styles.inputWrapper}>
@@ -17,14 +19,14 @@ export default class UserInput extends Component {
           returnKeyType={this.props.returnKeyType}
           placeholderTextColor="white"
           underlineColorAndroid="transparent"
-          onChangeText={this.props.textUsu}
+          onChangeText={this.props.textPass}
         />
       </View>
     );
   }
 }
 
-UserInput.propTypes = {
+PassInput.propTypes = {
   source: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
   secureTextEntry: PropTypes.bool,

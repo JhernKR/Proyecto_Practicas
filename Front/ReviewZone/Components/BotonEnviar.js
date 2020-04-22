@@ -33,7 +33,7 @@ export default class BotonEnviar extends Component {
     this._onPress = this._onPress.bind(this);
   }
 
-  _onPress() {
+  cargarAnimacion() {
     if (this.state.isLoading) return;
 
     this.setState({isLoading: true});
@@ -63,6 +63,25 @@ export default class BotonEnviar extends Component {
     }).start();
   }
 
+  inicioSesion = async (usu, pass) => {
+    if (usu.length == 0 || pass.length == 0) {
+      alert("Campos incompletos.")
+    }
+    else {
+      try {
+        let response = await fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${usu}&pass=${pass}`)
+
+        let responseJson = response.ok ? await response.json() : alert('Error');
+
+        if(responseJson != null) {this.cargarAnimacion()
+          this.props.navigation.navigate('Reviews', { usuario: responseJson}) }
+        else {alert("Información incorrecta")}
+      } catch (error) {
+        alert(error);
+      }
+    }
+  }
+
   render() {
     const changeWidth = this.buttonAnimated.interpolate({
       inputRange: [0, 1],
@@ -78,7 +97,7 @@ export default class BotonEnviar extends Component {
         <Animated.View style={{width: changeWidth}}>
           <TouchableOpacity
             style={styles.button}
-            onPress={this._onPress}
+            onPress={this.inicioSesion}
             activeOpacity={1}>
             {this.state.isLoading ? (
               <Image source={spinner} style={styles.image} />
