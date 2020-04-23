@@ -19,6 +19,8 @@ import usernameImg from '../Imagenes/username.png';
 import passwordImg from '../Imagenes/password.png';
 import eyeImg from '../Imagenes/eye_black.png';
 import PassInput from './PassInput';
+import NameInput from './NameInput';
+import MailInput from './MailInput';
 
 export default class Form extends Component {
   constructor(props) {
@@ -46,6 +48,20 @@ export default class Form extends Component {
           returnKeyType={'done'}
           autoCorrect={false}
           textUsu={this.props.textUsu}
+        />
+        <NameInput
+          placeholder="Nombre"
+          autoCapitalize={'none'}
+          returnKeyType={'done'}
+          autoCorrect={false}
+          textName={this.props.textName}
+        />
+        <MailInput
+          placeholder="Correo"
+          autoCapitalize={'none'}
+          returnKeyType={'done'}
+          autoCorrect={false}
+          textMail={this.props.textMail}
         />
         <PassInput
           source={passwordImg}
