@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
+import {ScrollView, View} from 'react-native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,6 +17,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator> 
         <Stack.Screen name="LogIn" component={LogIn} options={{headerShown:false}}/>
+        <Stack.Screen name="Reviews" component={(props) => <View/>} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

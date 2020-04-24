@@ -42,7 +42,7 @@ export default class LogIn extends React.Component {
             <Form textPass={this.textPass} textUsu={this.textUsu}/>
           </View>
           <View>
-            <BotonEnviar />
+            <BotonEnviar navigation={this.props.navigation} pass = {this.state.password} usu = {this.state.nom_usu}/>
             <SignUpSection />
           </View>
         </ScrollView>

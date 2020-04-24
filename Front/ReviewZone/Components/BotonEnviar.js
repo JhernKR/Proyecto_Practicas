@@ -10,7 +10,7 @@ import {
   Image,
   Alert,
   View,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux';
 
@@ -21,8 +21,10 @@ const DEVICE_HEIGHT = 731;//Dimensions.get('window').height;
 const MARGIN = 40;
 
 export default class BotonEnviar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log(props);
 
     this.state = {
       isLoading: false,
@@ -30,10 +32,52 @@ export default class BotonEnviar extends Component {
 
     this.buttonAnimated = new Animated.Value(0);
     this.growAnimated = new Animated.Value(0);
-    this._onPress = this._onPress.bind(this);
+    //this._onPress = this._onPress.bind(this);
   }
 
-  cargarAnimacion() {
+  handlePressLogin = () => {
+    this.setState({isLoading: true});
+    Animated.timing(this.buttonAnimated, {
+      toValue: 1,
+      duration: 200,
+      easing: Easing.linear,
+    }).start();
+
+    if (this.props.usu.length == 0 || this.props.pass.length == 0) {
+      alert("Campos incompletos.")
+    }
+    else {
+      try {
+        fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
+
+      } catch (error) {
+        alert(error);
+      }
+    }
+  }
+
+  handleEndFetch = async(response) => {
+    let responseJson = response.ok ? await response.json() : alert('Error');
+
+    Animated.timing(this.growAnimated, {
+      toValue: 1,
+      duration: 200,
+      easing: Easing.linear,
+    }).start(() => {
+      if(responseJson != null) {
+        this.props.navigation.navigate('Reviews', {usuario: responseJson}) }
+      else {alert("Información incorrecta")}
+    });
+
+    setTimeout(() => {
+      //Actions.secondScreen();
+      this.setState({isLoading: false});
+      this.buttonAnimated.setValue(0);
+      this.growAnimated.setValue(0);
+    }, 2300);
+  }
+
+  /*cargarAnimacion = () => {
     if (this.state.isLoading) return;
 
     this.setState({isLoading: true});
@@ -60,7 +104,7 @@ export default class BotonEnviar extends Component {
       toValue: 1,
       duration: 200,
       easing: Easing.linear,
-    }).start();
+    }).start(this.inicioSesion);
   }
 
   inicioSesion = async (usu, pass) => {
@@ -80,7 +124,7 @@ export default class BotonEnviar extends Component {
         alert(error);
       }
     }
-  }
+  }*/
 
   render() {
     const changeWidth = this.buttonAnimated.interpolate({
@@ -97,7 +141,7 @@ export default class BotonEnviar extends Component {
         <Animated.View style={{width: changeWidth}}>
           <TouchableOpacity
             style={styles.button}
-            onPress={this.inicioSesion}
+            onPress={this.handlePressLogin}
             activeOpacity={1}>
             {this.state.isLoading ? (
               <Image source={spinner} style={styles.image} />
