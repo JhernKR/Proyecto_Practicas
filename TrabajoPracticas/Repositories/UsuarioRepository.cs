@@ -9,6 +9,16 @@ namespace TrabajoPracticas.Repositories
 {
     public class UsuarioRepository
     {
+        internal List<Usuario> GetUsuarios()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            using (ReviewZoneContext context = new ReviewZoneContext())
+            {
+                usuarios = context.Usuarios.ToList();
+            }
+            return usuarios;
+        }
+
         internal Usuario GetUsuario(string nombre_usuario) {
 
             Usuario usuario = new Usuario();
@@ -35,6 +45,16 @@ namespace TrabajoPracticas.Repositories
 
             return usuarios;
         }*/
+
+        internal List<UsuarioDTO> GetUsuariosDTO()
+        {
+            List<UsuarioDTO> usuarios = new List<UsuarioDTO>();
+            using (ReviewZoneContext context = new ReviewZoneContext())
+            {
+                usuarios = context.Usuarios.Select(m => ToDTO(m)).ToList();
+            }
+            return usuarios;
+        }
 
         internal UsuarioDTO GetUsuarioDTO(string nombre_usuario)
         {

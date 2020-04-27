@@ -12,9 +12,11 @@ namespace TrabajoPracticas.Controllers
     public class UsuarioController : ApiController
     {
         // GET: api/Usuario
-        public IEnumerable<string> Get()
+        public IEnumerable<Usuario> Get()
         {
-            return new string[] { "value1", "value2" };
+            var repo = new UsuarioRepository();
+            List<Usuario> usuarios = repo.GetUsuarios();
+            return usuarios;
         }
 
         // GET: api/Usuario/5
@@ -23,6 +25,13 @@ namespace TrabajoPracticas.Controllers
             var repo = new UsuarioRepository();
             Usuario usuario = repo.GetUsuario(nom_usuario);
             return usuario;
+        }
+
+        public IEnumerable<UsuarioDTO> GetUsuariosDTO()
+        {
+            var repo = new UsuarioRepository();
+            List<UsuarioDTO> usuarios = repo.GetUsuariosDTO();
+            return usuarios;
         }
 
         public UsuarioDTO GetDTO(string nom_usu)
