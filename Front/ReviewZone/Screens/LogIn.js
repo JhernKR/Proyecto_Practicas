@@ -42,8 +42,14 @@ export default class LogIn extends React.Component {
             <Form textPass={this.textPass} textUsu={this.textUsu}/>
           </View>
           <View>
-            <BotonEnviar navigation={this.props.navigation} pass = {this.state.password} usu = {this.state.nom_usu}/>
-            <SignUpSection />
+            <BotonEnviar validate = {() => {return !this.state.nom_usu.length == 0 && !this.state.password.length == 0}}
+            request = {() => fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.state.nom_usu}&pass=${this.state.password}`)}
+            handleRequest = {(responseJson) => {
+              if(responseJson != null) {
+              this.props.navigation.navigate('Reviews', {usuario: responseJson}) }
+              else {alert("Información incorrecta")}
+            }}/>
+            <SignUpSection navigation = {this.props.navigation}/>
           </View>
         </ScrollView>
       </Fondo>

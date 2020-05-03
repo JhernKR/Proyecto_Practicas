@@ -43,13 +43,13 @@ export default class BotonEnviar extends Component {
       easing: Easing.linear,
     }).start();
 
-    if (this.props.usu.length == 0 || this.props.pass.length == 0) {
+    if (!this.props.validate()) {
       alert("Campos incompletos.")
     }
     else {
       try {
-        fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
-
+        //fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
+        this.props.request().then(this.handleEndFetch)
       } catch (error) {
         alert(error);
       }
@@ -64,9 +64,10 @@ export default class BotonEnviar extends Component {
       duration: 200,
       easing: Easing.linear,
     }).start(() => {
-      if(responseJson != null) {
-        this.props.navigation.navigate('Reviews', {usuario: responseJson}) }
-      else {alert("Información incorrecta")}
+      this.props.handleRequest(responseJson);
+      //if(responseJson != null) {
+        //this.props.navigation.navigate('Reviews', {usuario: responseJson}) }
+      //else {alert("Información incorrecta")}
     });
 
     setTimeout(() => {
@@ -146,7 +147,7 @@ export default class BotonEnviar extends Component {
             {this.state.isLoading ? (
               <Image source={spinner} style={styles.image} />
             ) : (
-              <Text style={styles.text}>LOGIN</Text>
+              <Text style={styles.text}>CONFIRMAR</Text>
             )}
           </TouchableOpacity>
           <Animated.View

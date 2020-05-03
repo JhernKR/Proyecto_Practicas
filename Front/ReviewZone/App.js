@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import LogIn from './Screens/LogIn.js';
+import Register from './Screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,7 @@ function App() {
       <Stack.Navigator> 
         <Stack.Screen name="LogIn" component={LogIn} options={{headerShown:false}}/>
         <Stack.Screen name="Reviews" component={(props) => <View/>} options={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

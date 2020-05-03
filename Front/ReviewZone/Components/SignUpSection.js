@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 //import Dimensions from 'Dimensions';
-import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, TouchableOpacity} from 'react-native';
 
 export default class SignUpSection extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={() => {this.props.navigation.navigate('Register')}}>
         <Text style={styles.text}>¿No tienes una cuenta? Regístrate</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
