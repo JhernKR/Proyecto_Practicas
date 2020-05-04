@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import LogIn from './Screens/LogIn.js';
 import Register from './Screens/Register.js';
+import Reviews from './Screens/Reviews.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,7 +19,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator> 
         <Stack.Screen name="LogIn" component={LogIn} options={{headerShown:false}}/>
-        <Stack.Screen name="Reviews" component={(props) => <View/>} options={{headerShown:false}}/>
+        <Stack.Screen name="Reviews" component={Reviews} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
