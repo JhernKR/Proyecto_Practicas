@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Text, View, Button, StyleSheet, FlatList, Picker, TextInput, TouchableWithoutFeedback, Image, Alert } from 'react-native';
+import { Text, View, StyleSheet, FlatList, Picker, Alert } from 'react-native';
+
+import FlatlistItem from '../Components/FlatlistItem';
 
 export default class Reviews extends React.Component {
 
@@ -38,6 +40,12 @@ export default class Reviews extends React.Component {
     this.cargarReviews(value);
   }
 
+  verDetalles = (obj) => {
+    if (this.state.categoria == "Serie") {
+      this.props.navigation.navigate('DetallesSerie', {review : obj});
+    }
+  }
+
   render() {
 
     return (
@@ -50,6 +58,16 @@ export default class Reviews extends React.Component {
             <Picker.Item label="Serie" value="Serie" />
             <Picker.Item label="Manga/Comic" value="Manga_Comic" />
           </Picker>
+          <FlatList
+            style={styles.flatlist}
+            data={this.state.reviews}
+            renderItem={({ item }) => (
+              <FlatlistItem
+                review={item}
+                detalles={this.verDetalles}
+              />
+            )}
+          />
       </View>
     )
   }
@@ -68,6 +86,9 @@ const styles = StyleSheet.create({
   },
   buttons: {
     borderRadius: 50, marginHorizontal: 25
+  },
+  flatlist: {
+    margin: 10,
   }
 });
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TrabajoPracticas.Models;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TrabajoPracticas.Repositories
 {
@@ -14,7 +15,7 @@ namespace TrabajoPracticas.Repositories
             List<Videojuego> videojuegos = new List<Videojuego>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                videojuegos = context.Videojuegos.ToList();
+                videojuegos = context.Videojuegos.Include(v => v.Usuario).ToList();
             }
             return videojuegos;
         }

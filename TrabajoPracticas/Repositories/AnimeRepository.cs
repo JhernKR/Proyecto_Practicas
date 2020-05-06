@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TrabajoPracticas.Models;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TrabajoPracticas.Repositories
 {
@@ -14,7 +15,7 @@ namespace TrabajoPracticas.Repositories
             List<Anime> animes = new List<Anime>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                animes = context.Animes.ToList();
+                animes = context.Animes.Include(v => v.Usuario).ToList();
             }
             return animes;
         }

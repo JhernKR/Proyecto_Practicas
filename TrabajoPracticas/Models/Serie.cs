@@ -46,5 +46,7 @@ namespace TrabajoPracticas.Models
         public bool Emision { get; set; }
 
         public int UsuarioId { get; set; }
+
+        public Usuario Usuario { get; set; }
     }
 }
