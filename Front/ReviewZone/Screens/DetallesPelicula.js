@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 
-export default class DetallesSerie extends React.Component {
+export default class DetallesPelicula extends React.Component {
 
   constructor(props) {
     super(props)
@@ -36,7 +36,7 @@ export default class DetallesSerie extends React.Component {
         imageStyle={styles.image_imageStyle}
       >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Detalles de la serie', style: { color: '#fff' } }} ></Header>
+        centerComponent={{ text: 'Detalles de la película', style: { color: '#fff' } }} ></Header>
         <ScrollView>
         <View style={styles.textStackRow}>
           <View style={styles.textStack}>
@@ -46,12 +46,8 @@ export default class DetallesSerie extends React.Component {
         <Text style={styles.usuario}>{this.state.review.Usuario.Nombreusuario}</Text>
         </View>
         <View style={styles.loremIpsumStack}>
-          <Text style={styles.loremIpsum}>Número de episodios:</Text>
-          <Text style={styles.loremIpsum3}>{this.state.review.Num_capitulos}</Text>
-        </View>
-        <View style={styles.duracionCapitulosRow}>
-          <Text style={styles.duracionCapitulos}>Duración capítulos:</Text>
-          <Text style={styles.loremIpsum4}>{this.state.review.Duracion_cap}</Text>
+          <Text style={styles.loremIpsum}>Duración:</Text>
+          <Text style={styles.loremIpsum3}>{this.state.review.Duracion}</Text>
         </View>
         <Text style={styles.sinopsis}>Sinopsis:</Text>
           <Text style={styles.loremIpsum6}>{this.state.review.Sinopsis}</Text>
@@ -63,25 +59,9 @@ export default class DetallesSerie extends React.Component {
         </View>
         <Text style={styles.reparto}>Reparto:</Text>
         <Text style={styles.reparto1}>{this.state.review.Reparto}</Text>
-        <View style={styles.direccionRow}>
-          <Text style={styles.direccion}>Dirección:</Text>
-          <Text style={styles.direccion1}>{this.state.review.Direccion}</Text>
-        </View>
-        <View style={styles.guionRow}>
-          <Text style={styles.guion}>Guión:</Text>
-          <Text style={styles.guion1}>{this.state.review.Guion}</Text>
-        </View>
         <View style={styles.generosRow}>
           <Text style={styles.generos}>Géneros:</Text>
           <Text style={styles.generos1}>{this.state.review.Generos}</Text>
-        </View>
-        <View style={styles.estadoRow}>
-          <Text style={styles.estado}>Estado:</Text>
-          <Text style={styles.estado1}>{this.state.estado}</Text>
-        </View>
-        <View style={styles.productoraRow}>
-          <Text style={styles.productora}>Productora:</Text>
-          <Text style={styles.productora1}>{this.state.review.Productora}</Text>
         </View>
         </ScrollView>
       </ImageBackground>
@@ -160,7 +140,8 @@ const styles = StyleSheet.create({
     color: "#121212",
     position: "absolute",
     fontSize: 20,
-    fontFamily: "helvetica-regular"
+    fontFamily: "helvetica-regular",
+    marginLeft: -110
   },
   loremIpsumStack: {
     //width: 220,
@@ -168,7 +149,7 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: 'auto',
     marginTop: 20,
-    marginLeft: 10
+    marginLeft: 10,
   },
   duracionCapitulos: {
     color: "#121212",
@@ -196,7 +177,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 20,
     fontFamily: "helvetica-regular",
-    marginTop: 10,
+    marginTop: 40,
     marginLeft: 8
   },
   loremIpsum6: {
@@ -369,5 +350,3 @@ const styles = StyleSheet.create({
     marginRight: 178
   }
 });
-
-

@@ -11,6 +11,7 @@ import LogIn from './Screens/LogIn.js';
 import Register from './Screens/Register.js';
 import Reviews from './Screens/Reviews.js';
 import DetallesSerie from './Screens/DetallesSerie.js';
+import DetallesPelicula from './Screens/DetallesPelicula.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,7 @@ function App() {
         <Stack.Screen name="Reviews" component={Reviews} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
         <Stack.Screen name="DetallesSerie" component={DetallesSerie} options={{headerShown:false}}/>
+        <Stack.Screen name="DetallesPelicula" component={DetallesPelicula} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

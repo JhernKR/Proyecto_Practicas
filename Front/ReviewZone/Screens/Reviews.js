@@ -44,6 +44,9 @@ export default class Reviews extends React.Component {
     if (this.state.categoria == "Serie") {
       this.props.navigation.navigate('DetallesSerie', {review : obj});
     }
+    if (this.state.categoria == "Pelicula") {
+      this.props.navigation.navigate('DetallesPelicula', {review : obj});
+    }
   }
 
   render() {
