@@ -36,7 +36,7 @@ export default class DetallesSerie extends React.Component {
         imageStyle={styles.image_imageStyle}
       >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Detalles de la serie', style: { color: '#fff' } }} ></Header>
+        centerComponent={{ text: 'Review de la serie', style: { color: '#fff' } }} ></Header>
         <ScrollView>
         <View style={styles.textStackRow}>
           <View style={styles.textStack}>

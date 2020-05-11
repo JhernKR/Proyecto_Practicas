@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 
-export default class DetallesPelicula extends React.Component {
+export default class DetallesVideojuego extends React.Component {
 
   constructor(props) {
     super(props)
@@ -16,7 +16,7 @@ export default class DetallesPelicula extends React.Component {
 
   }
   //<Text>Detalles Serie {this.state.review.Titulo}</Text>
-
+  
   render() {
     return (
       <View style={styles.container}>
@@ -27,7 +27,7 @@ export default class DetallesPelicula extends React.Component {
         imageStyle={styles.image_imageStyle}
       >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Review de la película', style: { color: '#fff' } }} ></Header>
+        centerComponent={{ text: 'Review del Videojuego', style: { color: '#fff' } }} ></Header>
         <ScrollView>
         <View style={styles.textStackRow}>
           <View style={styles.textStack}>
@@ -37,8 +37,8 @@ export default class DetallesPelicula extends React.Component {
         <Text style={styles.usuario}>{this.state.review.Usuario.Nombreusuario}</Text>
         </View>
         <View style={styles.loremIpsumStack}>
-          <Text style={styles.loremIpsum}>Duración:</Text>
-          <Text style={styles.loremIpsum3}>{this.state.review.Duracion}</Text>
+          <Text style={styles.loremIpsum}>Duración aproximada:</Text>
+          <Text style={styles.loremIpsum3}>{this.state.review.Duracion_aprox}</Text>
         </View>
         <Text style={styles.sinopsis}>Sinopsis:</Text>
           <Text style={styles.loremIpsum6}>{this.state.review.Sinopsis}</Text>
@@ -48,8 +48,16 @@ export default class DetallesPelicula extends React.Component {
           <Text style={styles.valoracionPersonal}>Valoración personal:</Text>
           <Text style={styles.valoracionPersonal1}>{this.state.review.Val_personal}</Text>
         </View>
-        <Text style={styles.reparto}>Reparto:</Text>
-        <Text style={styles.reparto1}>{this.state.review.Reparto}</Text>
+        <Text style={styles.reparto}>Plataformas:</Text>
+        <Text style={styles.reparto1}>{this.state.review.Plataformas}</Text>
+        <View style={styles.direccionRow}>
+          <Text style={styles.direccion}>Requisitos:</Text>
+          <Text style={styles.direccion1}>{this.state.review.Requisitos}</Text>
+        </View>
+        <View style={styles.guionRow}>
+          <Text style={styles.guion}>Compañía:</Text>
+          <Text style={styles.guion1}>{this.state.review.Company}</Text>
+        </View>
         <View style={styles.generosRow}>
           <Text style={styles.generos}>Géneros:</Text>
           <Text style={styles.generos1}>{this.state.review.Generos}</Text>
@@ -131,8 +139,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     position: "absolute",
     fontSize: 20,
-    fontFamily: "helvetica-regular",
-    marginLeft: -110
+    fontFamily: "helvetica-regular"
   },
   loremIpsumStack: {
     //width: 220,
@@ -140,7 +147,7 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: 'auto',
     marginTop: 20,
-    marginLeft: 10,
+    marginLeft: 10
   },
   duracionCapitulos: {
     color: "#121212",
@@ -265,10 +272,9 @@ const styles = StyleSheet.create({
   },
   guion1: {
     color: "#121212",
-    fontSize: 10,
+    fontSize: 20,
     fontFamily: "helvetica-regular",
     marginLeft: 6,
-    marginTop: 5
   },
   guionRow: {
     //height: 20,
@@ -341,3 +347,5 @@ const styles = StyleSheet.create({
     marginRight: 178
   }
 });
+
+

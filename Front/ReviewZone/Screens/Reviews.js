@@ -47,6 +47,15 @@ export default class Reviews extends React.Component {
     if (this.state.categoria == "Pelicula") {
       this.props.navigation.navigate('DetallesPelicula', {review : obj});
     }
+    if (this.state.categoria == "Anime") {
+      this.props.navigation.navigate('DetallesAnime', {review : obj});
+    }
+    if (this.state.categoria == "Videojuego") {
+      this.props.navigation.navigate('DetallesVideojuego', {review : obj});
+    }
+    if (this.state.categoria == "Manga_Comic") {
+      this.props.navigation.navigate('DetallesManga', {review : obj});
+    }
   }
 
   render() {
