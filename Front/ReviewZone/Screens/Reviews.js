@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, FlatList, Picker, Alert } from 'react-native';
-
+import { Text, View, StyleSheet, FlatList, Picker, Alert, ImageBackground } from 'react-native';
+import { Header, Icon } from 'react-native-elements';
 import FlatlistItem from '../Components/FlatlistItem';
 
 export default class Reviews extends React.Component {
@@ -61,8 +61,15 @@ export default class Reviews extends React.Component {
   render() {
 
     return (
-      <View style={{ flex: 1, backgroundColor: "white" }}>
-        <Text style={styles.text}> {this.state.usuario.Nombreusuario}</Text>
+      <View style={{ flex: 1}}>
+        <ImageBackground
+        source={require('../Imagenes/fondologin.jpg')}
+        resizeMode="cover"
+        style={styles.image}
+        imageStyle={styles.image_imageStyle}
+        >
+        <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" rightComponent={{ icon: 'add', color: '#fff', onPress: () => this.props.navigation.navigate('Add') }}
+        centerComponent={{ text: this.state.usuario.Nombreusuario, style: { color: '#fff', fontSize: 20 } }} ></Header>
         <Picker selectedValue={this.state.categoria} onValueChange={this.cambiarCategoria}>
             <Picker.Item label="Pelicula" value="Pelicula" />
             <Picker.Item label="Anime" value="Anime" />
@@ -80,6 +87,7 @@ export default class Reviews extends React.Component {
               />
             )}
           />
+          </ImageBackground>
       </View>
     )
   }
@@ -101,7 +109,16 @@ const styles = StyleSheet.create({
   },
   flatlist: {
     margin: 10,
-  }
+  },
+  image: {
+    flex: 1
+  },
+  image_imageStyle: {},
+  materialHeader1: {
+    width: 360,
+    height: 56,
+    backgroundColor: "rgba(255,165,0,1)"
+  },
 });
 
 
