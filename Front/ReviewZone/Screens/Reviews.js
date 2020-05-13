@@ -61,7 +61,7 @@ export default class Reviews extends React.Component {
   render() {
 
     return (
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ImageBackground
         source={require('../Imagenes/fondologin.jpg')}
         resizeMode="cover"
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     width: 360,
     height: 56,
     backgroundColor: "rgba(255,165,0,1)"
-  },
+  }
 });
 
 

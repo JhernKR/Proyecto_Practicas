@@ -20,8 +20,9 @@ export default class Add extends React.Component {
       type="outline"
       title="Serie"
       color="#fcad03"
-      style={styles.materialButtonDanger4}
-      />
+      onPress = {
+        () => this.props.navigation.navigate('FormSerie')
+      }/>
       <Button
       type="outline"
       title="Película"
