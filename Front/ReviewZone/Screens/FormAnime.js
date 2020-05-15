@@ -3,7 +3,7 @@ import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView,
 import { Header, Icon, Input } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 
-export default class FormSerie extends React.Component {
+export default class FormAnime extends React.Component {
 
   constructor(props) {
     super(props)
@@ -23,7 +23,7 @@ export default class FormSerie extends React.Component {
         imageStyle={styles.image_imageStyle}
       >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Review de la serie', style: { color: '#fff' } }} ></Header>
+        centerComponent={{ text: 'Review del Anime', style: { color: '#fff' } }} ></Header>
         <ScrollView>
             <Input
               label = "Título:"
@@ -143,55 +143,6 @@ export default class FormSerie extends React.Component {
             </RadioButton.Group>
 
             <Input
-              label = "Reparto:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce reparto"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              multiline = {true}
-            />
-
-            <Input
-              label = "Dirección:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce dirección"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Guión:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce guionistas"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Productora:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce productora"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
               label = "Géneros:"
               labelStyle = {{
                   color : 'black',
@@ -202,6 +153,18 @@ export default class FormSerie extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+            />
+ 
+            <Input
+              label = "Productora:"
+              labelStyle = {{
+                  color : 'black',
+                  fontSize : 20
+              }}
+              underlineColorAndroid = "transparent"
+              placeholder = "Introduce productora"
+              placeholderTextColor = "#fff"
+              autoCapitalize = "none"
             />
 
             <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Estado:</Text>
@@ -216,7 +179,7 @@ export default class FormSerie extends React.Component {
               </View>
               <View style={{flexDirection:"row", alignContent: 'center', alignItems: 'center'}}>
               <RadioButton value='finalizada'/>
-              <Text>Finalizada</Text>
+              <Text>Finalizado</Text>
               </View>
               </View>
             </RadioButton.Group>

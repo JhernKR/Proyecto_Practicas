@@ -3,13 +3,12 @@ import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView,
 import { Header, Icon, Input } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 
-export default class FormSerie extends React.Component {
+export default class FormPelicula extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
       value: '5',
-      value1: 'emision'
     };
   }
 
@@ -23,7 +22,7 @@ export default class FormSerie extends React.Component {
         imageStyle={styles.image_imageStyle}
       >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Review de la serie', style: { color: '#fff' } }} ></Header>
+        centerComponent={{ text: 'Review de la película', style: { color: '#fff' } }} ></Header>
         <ScrollView>
             <Input
               label = "Título:"
@@ -39,26 +38,13 @@ export default class FormSerie extends React.Component {
             />
 
             <Input
-              label = "Número de capítulos:"
+              label = "Duración:"
               labelStyle = {{
                   color : 'black',
                   fontSize : 20
               }}
               underlineColorAndroid = "transparent"
-              placeholder = "Introduce nº capítulos"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              keyboardType = "numeric"
-            />
-
-            <Input
-              label = "Duración de capítulos:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce dur. capítulos"
+              placeholder = "Introduce dur."
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
             />
@@ -156,42 +142,6 @@ export default class FormSerie extends React.Component {
             />
 
             <Input
-              label = "Dirección:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce dirección"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Guión:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce guionistas"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Productora:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce productora"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
               label = "Géneros:"
               labelStyle = {{
                   color : 'black',
@@ -203,23 +153,6 @@ export default class FormSerie extends React.Component {
               autoCapitalize = "none"
               multiline = {true}
             />
-
-            <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Estado:</Text>
-            <RadioButton.Group
-              onValueChange={valor1 => this.setState({ value1 : valor1 })}
-              value={this.state.value1}
-            >
-              <View style={{marginLeft : 5}}>
-              <View style={{flexDirection:"row", alignContent: 'center', alignItems: 'center'}}>
-              <RadioButton value='emision'/>
-              <Text>En emision</Text>
-              </View>
-              <View style={{flexDirection:"row", alignContent: 'center', alignItems: 'center'}}>
-              <RadioButton value='finalizada'/>
-              <Text>Finalizada</Text>
-              </View>
-              </View>
-            </RadioButton.Group>
 
             <TouchableOpacity style = {styles.submitButton}>
                <Text style = {styles.submitButtonText}> Confirmar </Text>

@@ -27,21 +27,32 @@ export default class Add extends React.Component {
       type="outline"
       title="Película"
       color="#fcad03"
-      />
+      onPress = {
+        () => this.props.navigation.navigate('FormPelicula')
+      }/>
       <Button
       type="outline"
       title="Videojuego"
       color="#fcad03"
+      onPress = {
+        () => this.props.navigation.navigate('FormVideojuego')
+      }
       />
       <Button
       type="outline"
       title="Manga/Cómic"
       color="#fcad03"
+      onPress = {
+        () => this.props.navigation.navigate('FormManga')
+      }
       />
       <Button
       type="outline"
       title="Anime"
       color="#fcad03"
+      onPress = {
+        () => this.props.navigation.navigate('FormAnime')
+      }
       />
       </ImageBackground>
     </View>
