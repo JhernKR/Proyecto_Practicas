@@ -21,6 +21,7 @@ import FormPelicula from './Screens/FormPelicula.js';
 import FormVideojuego from './Screens/FormVideojuego.js';
 import FormManga from './Screens/FormManga.js';
 import FormAnime from './Screens/FormAnime.js';
+import Profile from './Screens/Profile.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,7 @@ function App() {
         <Stack.Screen name="FormVideojuego" component={FormVideojuego} options={{headerShown:false}}/>
         <Stack.Screen name="FormManga" component={FormManga} options={{headerShown:false}}/>
         <Stack.Screen name="FormAnime" component={FormAnime} options={{headerShown:false}}/>
+        <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

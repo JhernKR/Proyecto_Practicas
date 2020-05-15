@@ -1,166 +1,101 @@
 import * as React from 'react';
-import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Image, ImageBackground, Text, View, StyleSheet, Dimensions, ScrollView, TouchableOpacity, TextInput, Picker, FlatList } from 'react-native';
 import { Header, Icon, Input } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
+import FlatlistItem from '../Components/FlatlistItem';
 
 export default class Profile extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      value: '5',
-    };
+      reviews : [],
+      categoria : 'Pelicula'
+    }
+  }
+
+  componentDidMount() {
+    this.update = this.props.navigation.addListener('focus', () => {
+      this.cargarReviews(this.state.categoria);
+    })
+  }
+
+  cargarReviews = async (categoria) => {
+    try {
+      let response = await fetch(`http://10.0.2.2:50921/api/${categoria}`);
+
+      let responseJson = response.ok ? await response.json() : Alert.alert("Error");
+
+      if (responseJson != null) { this.setState({ reviews: responseJson }) }
+      else { console.log("Error al cargar reviews")}
+
+    } catch (error) {
+      Alert.alert("Error");
+    }
+  }
+
+  cambiarCategoria = (value) => {
+    this.setState({ categoria: value })
+
+    this.cargarReviews(value);
+  }
+
+  verDetalles = (obj) => {
+    if (this.state.categoria == "Serie") {
+      this.props.navigation.navigate('DetallesSerie', {review : obj});
+    }
+    if (this.state.categoria == "Pelicula") {
+      this.props.navigation.navigate('DetallesPelicula', {review : obj});
+    }
+    if (this.state.categoria == "Anime") {
+      this.props.navigation.navigate('DetallesAnime', {review : obj});
+    }
+    if (this.state.categoria == "Videojuego") {
+      this.props.navigation.navigate('DetallesVideojuego', {review : obj});
+    }
+    if (this.state.categoria == "Manga_Comic") {
+      this.props.navigation.navigate('DetallesManga', {review : obj});
+    }
   }
 
   render() {
     return (
-      <View style={styles.container}>
-      <ImageBackground
-        source={require('../Imagenes/fondologin.jpg')}
-        resizeMode="cover"
-        style={styles.image}
-        imageStyle={styles.image_imageStyle}
-      >
-        <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
-        centerComponent={{ text: 'Review de la película', style: { color: '#fff' } }} ></Header>
-        <ScrollView>
-            <Input
-              label = "Título:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20,
-                  marginTop : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce el título"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Duración:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce dur."
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-            />
-
-            <Input
-              label = "Sinopsis:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce Sinopsis"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              multiline = {true}
-            />
-
-            <Input
-              label = "Opinión personal:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce opinión"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              multiline = {true}
-            />
-
-            <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Valoración Personal:</Text>
-            <RadioButton.Group
-              onValueChange={value1 => this.setState({ value : value1 })}
-              value={this.state.value}
+      <View style={{flex:1}}>
+            <ImageBackground
+            source={require('../Imagenes/fondologin.jpg')}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.image_imageStyle}
             >
-              <View style={{flexDirection : 'row', marginLeft : 5}}>
+              <Header containerStyle={{marginTop: -25, flex: 0.09}} backgroundColor="#fcad03" leftComponent={{ icon: 'chevron-left', type: 'AntDesign', color: '#fff', onPress: () => this.props.navigation.navigate('Reviews') }}
+              centerComponent={{ text: 'Perfil del usuario', style: { color: '#fff' } }} ></Header>
+              <View style={{flex: 0.9, marginLeft: 5, marginTop: 5}}>
               <View>
-                <Text style={styles.text}>0</Text>
-                <RadioButton value="0" />
+                    <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre:   Josep</Text>
+                </View>
+                <View>
+                <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre Usuario:    Joheto01</Text>
+                </View>
+              <Picker selectedValue={this.state.categoria} onValueChange={this.cambiarCategoria}>
+                <Picker.Item label="Pelicula" value="Pelicula" />
+                <Picker.Item label="Anime" value="Anime" />
+                <Picker.Item label="Videojuego" value="Videojuego" />
+                <Picker.Item label="Serie" value="Serie" />
+                <Picker.Item label="Manga/Comic" value="Manga_Comic" />
+              </Picker>
+              <FlatList
+                style={styles.flatlist}
+                data={this.state.reviews}
+                renderItem={({ item }) => (
+                  <FlatlistItem
+                    review={item}
+                    detalles={this.verDetalles}
+                  />
+                )}
+              />
               </View>
-              <View>
-                <Text style={styles.text}>1</Text>
-                <RadioButton value="1" />
-              </View>
-              <View>
-                <Text style={styles.text}>2</Text>
-                <RadioButton value="2" />
-              </View>
-              <View>
-                <Text style={styles.text}>3</Text>
-                <RadioButton value="3" />
-              </View>
-              <View>
-                <Text style={styles.text}>4</Text>
-                <RadioButton value="4" />
-              </View>
-              <View>
-                <Text style={styles.text}>5</Text>
-                <RadioButton value="5" />
-              </View>
-              <View>
-                <Text style={styles.text}>6</Text>
-                <RadioButton value="6" />
-              </View>
-              <View>
-                <Text style={styles.text}>7</Text>
-                <RadioButton value="7" />
-              </View>
-              <View>
-                <Text style={styles.text}>8</Text>
-                <RadioButton value="8" />
-              </View>
-              <View>
-                <Text style={styles.text}>9</Text>
-                <RadioButton value="9" />
-              </View>
-              <View>
-                <Text style={styles.text}>10</Text>
-                <RadioButton value="10" />
-              </View>
-              </View>
-            </RadioButton.Group>
-
-            <Input
-              label = "Reparto:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce reparto"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              multiline = {true}
-            />
-
-            <Input
-              label = "Géneros:"
-              labelStyle = {{
-                  color : 'black',
-                  fontSize : 20
-              }}
-              underlineColorAndroid = "transparent"
-              placeholder = "Introduce géneros"
-              placeholderTextColor = "#fff"
-              autoCapitalize = "none"
-              multiline = {true}
-            />
-
-            <TouchableOpacity style = {styles.submitButton}>
-               <Text style = {styles.submitButtonText}> Confirmar </Text>
-            </TouchableOpacity>
-
-        </ScrollView>
-      </ImageBackground>
-    </View>
+            </ImageBackground>
+      </View>        
     )
   }
 }

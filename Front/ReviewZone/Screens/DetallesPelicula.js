@@ -34,7 +34,9 @@ export default class DetallesPelicula extends React.Component {
             <Text style={styles.text}></Text>
             <Text style={styles.titulo}>{this.state.review.Titulo}</Text>
           </View>
+        <TouchableOpacity style={styles.container} onPress={() => {this.props.navigation.navigate('Profile')}}>
         <Text style={styles.usuario}>{this.state.review.Usuario.Nombreusuario}</Text>
+        </TouchableOpacity>
         </View>
         <View style={styles.loremIpsumStack}>
           <Text style={styles.loremIpsum}>Duración:</Text>
