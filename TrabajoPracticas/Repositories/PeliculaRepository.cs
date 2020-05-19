@@ -20,13 +20,13 @@ namespace TrabajoPracticas.Repositories
             return peliculas;
         }
 
-        internal Pelicula GetPeliculaUsuario(int id_usuario)
+        internal List<Pelicula> GetPeliculaUsuario(int id_usuario)
         {
 
-            Pelicula pelicula = new Pelicula();
+            List<Pelicula> pelicula = new List<Pelicula>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                pelicula = context.Peliculas.Where(p => p.UsuarioId == id_usuario).FirstOrDefault();
+                pelicula = context.Peliculas.Include(v => v.Usuario).Where(p => p.UsuarioId == id_usuario).ToList();
             }
             return pelicula;
 

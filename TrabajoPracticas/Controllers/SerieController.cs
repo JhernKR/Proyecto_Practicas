@@ -20,10 +20,10 @@ namespace TrabajoPracticas.Controllers
         }
 
         // GET: api/Serie/5
-        public Serie Get(int id)
+        public IEnumerable<Serie> Get(int id)
         {
             var repo = new SerieRepository();
-            Serie serie = repo.GetSerieUsuario(id);
+            List<Serie> serie = repo.GetSerieUsuario(id);
             return serie;
         }
 

@@ -20,13 +20,13 @@ namespace TrabajoPracticas.Repositories
             return animes;
         }
 
-        internal Anime GetAnimeUsuario(int id_usuario)
+        internal List<Anime> GetAnimeUsuario(int id_usuario)
         {
 
-            Anime anime = new Anime();
+            List<Anime> anime = new List<Anime>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                anime = context.Animes.Where(p => p.UsuarioId == id_usuario).FirstOrDefault();
+                anime = context.Animes.Include(v => v.Usuario).Where(p => p.UsuarioId == id_usuario).ToList();
             }
             return anime;
 

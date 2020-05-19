@@ -20,10 +20,10 @@ namespace TrabajoPracticas.Controllers
         }
 
         // GET: api/Serie/5
-        public Pelicula Get(int id)
+        public IEnumerable<Pelicula> Get(int id)
         {
             var repo = new PeliculaRepository();
-            Pelicula pelicula = repo.GetPeliculaUsuario(id);
+            List<Pelicula> pelicula = repo.GetPeliculaUsuario(id);
             return pelicula;
         }
 

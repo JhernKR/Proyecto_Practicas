@@ -4,6 +4,13 @@ import { Header, Icon } from 'react-native-elements';
 
 export default class Add extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      usuario : this.props.route.params.usuario,
+    }
+  }
+
   render() {
     return (
     <View style={styles.container}>
@@ -21,21 +28,21 @@ export default class Add extends React.Component {
       title="Serie"
       color="#fcad03"
       onPress = {
-        () => this.props.navigation.navigate('FormSerie')
+        () => this.props.navigation.navigate('FormSerie', {usuario : this.state.usuario})
       }/>
       <Button
       type="outline"
       title="Película"
       color="#fcad03"
       onPress = {
-        () => this.props.navigation.navigate('FormPelicula')
+        () => this.props.navigation.navigate('FormPelicula', {usuario : this.state.usuario})
       }/>
       <Button
       type="outline"
       title="Videojuego"
       color="#fcad03"
       onPress = {
-        () => this.props.navigation.navigate('FormVideojuego')
+        () => this.props.navigation.navigate('FormVideojuego', {usuario : this.state.usuario})
       }
       />
       <Button
@@ -43,7 +50,7 @@ export default class Add extends React.Component {
       title="Manga/Cómic"
       color="#fcad03"
       onPress = {
-        () => this.props.navigation.navigate('FormManga')
+        () => this.props.navigation.navigate('FormManga', {usuario : this.state.usuario})
       }
       />
       <Button
@@ -51,7 +58,7 @@ export default class Add extends React.Component {
       title="Anime"
       color="#fcad03"
       onPress = {
-        () => this.props.navigation.navigate('FormAnime')
+        () => this.props.navigation.navigate('FormAnime', {usuario : this.state.usuario})
       }
       />
       </ImageBackground>

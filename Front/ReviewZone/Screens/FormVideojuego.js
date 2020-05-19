@@ -9,6 +9,13 @@ export default class FormVideojuego extends React.Component {
     super(props)
     this.state = {
       value: '5',
+      titulo: '',
+      dur_aprox: '',
+      sinopsis: '',
+      op_perso: '',
+      plataformas: '',
+      requisitos: '',
+      company: '',
     };
   }
 

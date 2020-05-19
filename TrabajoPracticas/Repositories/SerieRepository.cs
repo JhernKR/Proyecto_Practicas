@@ -20,13 +20,13 @@ namespace TrabajoPracticas.Repositories
             return series;
         }
 
-        internal Serie GetSerieUsuario(int id_usuario)
+        internal List<Serie> GetSerieUsuario(int id_usuario)
         {
 
-            Serie serie = new Serie();
+            List<Serie> serie = new List<Serie>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                serie = context.Series.Where(p => p.UsuarioId == id_usuario).FirstOrDefault();
+                serie = context.Series.Include(v => v.Usuario).Where(p => p.UsuarioId == id_usuario).ToList();
             }
             return serie;
 

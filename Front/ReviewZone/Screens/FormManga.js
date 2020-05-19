@@ -9,8 +9,67 @@ export default class FormManga extends React.Component {
     super(props)
     this.state = {
       value: '5',
-      value1: 'emision'
+      value1: 'emision',
+      titulo: '',
+      tomos: '',
+      sinopsis: '',
+      op_perso: '',
+      autor: '',
+      editorial: '',
+      generos: '',
+      artistas: '',
+      usuario: this.props.route.params.usuario
     };
+  }
+
+  SaveState = (asd, text) => {
+    var regExp = /^[A-Za-z0-9À-ÿ][A-Za-z0-9À-ÿ -./,()]*$/;
+    (regExp.test(text)) ? this.setState({ [asd] : text })
+      : this.setState({ value: "" })
+  }
+
+  PublicarReview = async() => {
+    let review =  {
+      Titulo: this.state.titulo,
+      Tomos: this.state.tomos,
+      Sinopsis: this.state.sinopsis,
+      Op_personal: this.state.op_perso,
+      Autor: this.state.autor,
+      Editorial: this.state.editorial,
+      Val_personal: this.state.value,
+      Generos: this.state.generos,
+      Artistas: this.state.artistas,
+      Emision: this.state.value1,
+      UsuarioId: this.state.usuario.UsuarioId
+    }
+
+    if(this.comprobar(review)) {      
+      try {
+        const response = await fetch('http://10.0.2.2:50921/api/Manga_Comic', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify( review ),
+        });
+
+        const json = response.ok ? await response.json() : alert('Error');
+
+        alert(`Review publicada`);
+      } catch (error) {
+        alert(`Error: ${error}`);
+      }
+    }
+    else {
+      alert('Faltan campos por completar')
+    }
+  }
+
+  comprobar (review) {
+    if (review.Titulo.lenght > 0 && review.Tomos.lenght > 0 && review.Sinopsis.lenght > 0 && review.Op_personal.lenght > 0 && review.Autor.lenght > 0 && review.Editorial.lenght > 0 && review.Generos.lenght > 0 && review.Artistas.lenght > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   render() {
@@ -36,6 +95,7 @@ export default class FormManga extends React.Component {
               placeholder = "Introduce el título"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("titulo", value)}
             />
 
             <Input
@@ -49,6 +109,7 @@ export default class FormManga extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               keyboardType = "numeric"
+              onChangeText={(value) => this.SaveState("tomos", value)}
             />
 
             <Input
@@ -62,6 +123,7 @@ export default class FormManga extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("sinopsis", value)}
             />
 
             <Input
@@ -75,6 +137,7 @@ export default class FormManga extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("op_perso", value)}
             />
 
             <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Valoración Personal:</Text>
@@ -140,6 +203,7 @@ export default class FormManga extends React.Component {
               placeholder = "Introduce autor"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("autor", value)}
             />
 
             <Input
@@ -152,6 +216,7 @@ export default class FormManga extends React.Component {
               placeholder = "Introduce editorial"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("editorial", value)}
             />
       
             <Input
@@ -165,6 +230,7 @@ export default class FormManga extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("generos", value)}
             />
 
             <Input
@@ -178,6 +244,7 @@ export default class FormManga extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("artistas", value)}
             />
 
             <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Estado:</Text>
@@ -197,8 +264,8 @@ export default class FormManga extends React.Component {
               </View>
             </RadioButton.Group>
 
-            <TouchableOpacity style = {styles.submitButton}>
-               <Text style = {styles.submitButtonText}> Confirmar </Text>
+            <TouchableOpacity style={styles.submitButton} onPress={this.PublicarReview}>
+              <Text style={styles.submitButtonText}> Confirmar </Text>
             </TouchableOpacity>
 
         </ScrollView>

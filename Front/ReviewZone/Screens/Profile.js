@@ -10,6 +10,7 @@ export default class Profile extends React.Component {
     super(props)
     this.state = {
       reviews : [],
+      usuario : this.props.route.params.usuario,
       categoria : 'Pelicula'
     }
   }
@@ -22,7 +23,7 @@ export default class Profile extends React.Component {
 
   cargarReviews = async (categoria) => {
     try {
-      let response = await fetch(`http://10.0.2.2:50921/api/${categoria}`);
+      let response = await fetch(`http://10.0.2.2:50921/api/${categoria}/${this.state.usuario.UsuarioId}`);
 
       let responseJson = response.ok ? await response.json() : Alert.alert("Error");
 
@@ -71,10 +72,10 @@ export default class Profile extends React.Component {
               centerComponent={{ text: 'Perfil del usuario', style: { color: '#fff' } }} ></Header>
               <View style={{flex: 0.9, marginLeft: 5, marginTop: 5}}>
               <View>
-                    <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre:   Josep</Text>
+                <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre:   {this.state.usuario.Nombre}</Text>
                 </View>
                 <View>
-                <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre Usuario:    Joheto01</Text>
+                <Text style={{fontSize:20,fontWeight:'bold'}}>Nombre Usuario:   {this.state.usuario.Nombreusuario}</Text>
                 </View>
               <Picker selectedValue={this.state.categoria} onValueChange={this.cambiarCategoria}>
                 <Picker.Item label="Pelicula" value="Pelicula" />

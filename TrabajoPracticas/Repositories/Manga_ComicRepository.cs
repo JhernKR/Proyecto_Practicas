@@ -20,13 +20,13 @@ namespace TrabajoPracticas.Repositories
             return mangas;
         }
 
-        internal Manga_Comic GetMangaUsuario(int id_usuario)
+        internal List<Manga_Comic> GetMangaUsuario(int id_usuario)
         {
 
-            Manga_Comic manga = new Manga_Comic();
+            List<Manga_Comic> manga = new List<Manga_Comic>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                manga = context.Mangas_Comics.Where(p => p.UsuarioId == id_usuario).FirstOrDefault();
+                manga = context.Mangas_Comics.Include(v => v.Usuario).Where(p => p.UsuarioId == id_usuario).ToList();
             }
             return manga;
 

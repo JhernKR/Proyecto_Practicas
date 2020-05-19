@@ -9,7 +9,61 @@ export default class FormPelicula extends React.Component {
     super(props)
     this.state = {
       value: '5',
+      usuario: this.props.route.params.usuario,
+      titulo: '',
+      duracion: '',
+      sinopsis: '',
+      reparto: '',
+      op_perso: '',
+      generos: ''
     };
+  }
+
+  SaveState = (asd, text) => {
+    var regExp = /^[A-Za-z0-9À-ÿ][A-Za-z0-9À-ÿ -./,()]*$/;
+    (regExp.test(text)) ? this.setState({ [asd] : text })
+      : this.setState({ value: "" })
+  }
+
+  PublicarReview = async() => {
+    let review =  {
+      Titulo: this.state.titulo,
+      Duracion: this.state.duracion,
+      Sinopsis: this.state.sinopsis,
+      Op_personal: this.state.op_perso,
+      Val_personal: this.state.value,
+      Reparto: this.state.reparto,
+      Generos: this.state.generos,
+      UsuarioId: this.state.usuario.UsuarioId
+    }
+
+    if(this.comprobar(review)) {      
+      try {
+        const response = await fetch('http://10.0.2.2:50921/api/Pelicula', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify( review ),
+        });
+
+        const json = response.ok ? await response.json() : alert('Error');
+
+        alert(`Review publicada`);
+      } catch (error) {
+        alert(`Error: ${error}`);
+      }
+    }
+    else {
+      alert('Faltan campos por completar')
+    }
+  }
+
+  comprobar (review) {
+    if (review.Titulo.lenght > 0 && review.Duracion.lenght > 0 && review.Sinopsis.lenght > 0 && review.Reparto.lenght > 0 && review.Op_personal.lenght > 0 && review.Generos.lenght > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   render() {
@@ -35,6 +89,7 @@ export default class FormPelicula extends React.Component {
               placeholder = "Introduce el título"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("titulo", value)}
             />
 
             <Input
@@ -47,6 +102,7 @@ export default class FormPelicula extends React.Component {
               placeholder = "Introduce dur."
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("duracion", value)}
             />
 
             <Input
@@ -60,6 +116,7 @@ export default class FormPelicula extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("sinopsis", value)}
             />
 
             <Input
@@ -73,6 +130,7 @@ export default class FormPelicula extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("op_perso", value)}
             />
 
             <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Valoración Personal:</Text>
@@ -139,6 +197,7 @@ export default class FormPelicula extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("reparto", value)}
             />
 
             <Input
@@ -152,10 +211,11 @@ export default class FormPelicula extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("generos", value)}
             />
 
-            <TouchableOpacity style = {styles.submitButton}>
-               <Text style = {styles.submitButtonText}> Confirmar </Text>
+            <TouchableOpacity style={styles.submitButton} onPress={this.PublicarReview}>
+              <Text style={styles.submitButtonText}> Confirmar </Text>
             </TouchableOpacity>
 
         </ScrollView>

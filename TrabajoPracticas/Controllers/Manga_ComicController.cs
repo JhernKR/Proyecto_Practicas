@@ -20,10 +20,10 @@ namespace TrabajoPracticas.Controllers
         }
 
         // GET: api/Serie/5
-        public Manga_Comic Get(int id)
+        public IEnumerable<Manga_Comic> Get(int id)
         {
             var repo = new Manga_ComicRepository();
-            Manga_Comic manga = repo.GetMangaUsuario(id);
+            List<Manga_Comic> manga = repo.GetMangaUsuario(id);
             return manga;
         }
 

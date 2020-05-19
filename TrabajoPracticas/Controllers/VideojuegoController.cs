@@ -20,10 +20,10 @@ namespace TrabajoPracticas.Controllers
         }
 
         // GET: api/Serie/5
-        public Videojuego Get(int id)
+        public IEnumerable<Videojuego> Get(int id)
         {
             var repo = new VideojuegoRepository();
-            Videojuego videojuego = repo.GetVideojuegoUsuario(id);
+            List<Videojuego> videojuego = repo.GetVideojuegoUsuario(id);
             return videojuego;
         }
 

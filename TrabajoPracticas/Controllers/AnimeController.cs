@@ -20,10 +20,10 @@ namespace TrabajoPracticas.Controllers
         }
 
         // GET: api/Serie/5
-        public Anime Get(int id)
+        public IEnumerable<Anime> Get(int id)
         {
             var repo = new AnimeRepository();
-            Anime anime = repo.GetAnimeUsuario(id);
+            List<Anime> anime = repo.GetAnimeUsuario(id);
             return anime;
         }
 

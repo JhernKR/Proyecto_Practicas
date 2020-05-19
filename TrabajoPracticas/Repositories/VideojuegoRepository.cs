@@ -20,13 +20,13 @@ namespace TrabajoPracticas.Repositories
             return videojuegos;
         }
 
-        internal Videojuego GetVideojuegoUsuario(int id_usuario)
+        internal List<Videojuego> GetVideojuegoUsuario(int id_usuario)
         {
 
-            Videojuego videojuego = new Videojuego();
+            List<Videojuego> videojuego = new List<Videojuego>();
             using (ReviewZoneContext context = new ReviewZoneContext())
             {
-                videojuego = context.Videojuegos.Where(p => p.UsuarioId == id_usuario).FirstOrDefault();
+                videojuego = context.Videojuegos.Include(v => v.Usuario).Where(p => p.UsuarioId == id_usuario).ToList();
             }
             return videojuego;
 
