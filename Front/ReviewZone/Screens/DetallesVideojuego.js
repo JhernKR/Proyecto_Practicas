@@ -34,7 +34,9 @@ export default class DetallesVideojuego extends React.Component {
             <Text style={styles.text}></Text>
             <Text style={styles.titulo}>{this.state.review.Titulo}</Text>
           </View>
-        <Text style={styles.usuario}>{this.state.review.Usuario.Nombreusuario}</Text>
+        <TouchableOpacity style={styles.container} onPress={() => {this.props.navigation.navigate('Profile', {usuario : this.state.review.Usuario})}}>
+          <Text style={styles.usuario}>{this.state.review.Usuario.Nombreusuario}</Text>
+        </TouchableOpacity>
         </View>
         <View style={styles.loremIpsumStack}>
           <Text style={styles.loremIpsum}>Duración aproximada:</Text>

@@ -16,7 +16,58 @@ export default class FormVideojuego extends React.Component {
       plataformas: '',
       requisitos: '',
       company: '',
+      generos: '',
+      usuario: this.props.route.params.usuario,
     };
+  }
+
+  SaveState = (asd, text) => {
+    var regExp = /^[A-Za-z0-9À-ÿ][A-Za-z0-9À-ÿ -./,()]*$/;
+    (regExp.test(text)) ? this.setState({ [asd] : text })
+      : this.setState({ value: "" })
+  }
+
+  PublicarReview = async() => {
+    let review =  {
+      Titulo: this.state.titulo,
+      Duracion_aprox: this.state.dur_aprox,
+      Sinopsis: this.state.sinopsis,
+      Op_personal: this.state.op_perso,
+      Val_personal: this.state.value,
+      Generos: this.state.generos,
+      Plataformas: this.state.plataformas,
+      Requisitos: this.state.requisitos,
+      Company: this.state.company,
+      UsuarioId: this.state.usuario.UsuarioId
+    }
+
+    if(this.comprobar(review)) {      
+      try {
+        const response = await fetch('http://10.0.2.2:50921/api/Videojuego', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify( review ),
+        });
+
+        const json = response.ok ? await response.json() : alert('Error');
+
+        alert(`Review publicada`);
+      } catch (error) {
+        alert(`Error: ${error}`);
+      }
+    }
+    else {
+      alert('Faltan campos por completar')
+    }
+  }
+
+  comprobar (review) {
+    if (review.Titulo.lenght > 0 && review.Duracion_aprox.lenght > 0 && review.Sinopsis.lenght > 0 && review.Op_personal.lenght > 0 && review.Plataformas.lenght > 0 && review.Requisitos.lenght > 0 && review.Company.lenght > 0 && review.Generos.lenght > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   render() {
@@ -42,6 +93,7 @@ export default class FormVideojuego extends React.Component {
               placeholder = "Introduce el título"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("titulo", value)}
             />
 
             <Input
@@ -54,6 +106,7 @@ export default class FormVideojuego extends React.Component {
               placeholder = "Introduce dur. aprox."
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("dur_aprox", value)}
             />
 
             <Input
@@ -67,6 +120,7 @@ export default class FormVideojuego extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("sinopsis", value)}
             />
 
             <Input
@@ -80,6 +134,7 @@ export default class FormVideojuego extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("op_perso", value)}
             />
 
             <Text style={{alignSelf : 'flex-start', marginLeft: 12, fontSize: 20, fontWeight: 'bold'}}>Valoración Personal:</Text>
@@ -146,6 +201,7 @@ export default class FormVideojuego extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("plataformas", value)}
             />
 
             <Input
@@ -159,6 +215,7 @@ export default class FormVideojuego extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("requisitos", value)}
             />
 
             <Input
@@ -171,6 +228,7 @@ export default class FormVideojuego extends React.Component {
               placeholder = "Introduce compañía"
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
+              onChangeText={(value) => this.SaveState("company", value)}
             />
 
             <Input
@@ -184,10 +242,11 @@ export default class FormVideojuego extends React.Component {
               placeholderTextColor = "#fff"
               autoCapitalize = "none"
               multiline = {true}
+              onChangeText={(value) => this.SaveState("generos", value)}
             />
 
-            <TouchableOpacity style = {styles.submitButton}>
-               <Text style = {styles.submitButtonText}> Confirmar </Text>
+            <TouchableOpacity style={styles.submitButton} onPress={this.PublicarReview}>
+              <Text style={styles.submitButtonText}> Confirmar </Text>
             </TouchableOpacity>
 
         </ScrollView>
