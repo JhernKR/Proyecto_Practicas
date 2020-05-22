@@ -69,7 +69,7 @@ export default class Reviews extends React.Component {
         imageStyle={styles.image_imageStyle}
         >
         <Header containerStyle={{marginTop: -25}} backgroundColor="#fcad03" rightComponent={{ icon: 'add', color: '#fff', onPress: () => this.props.navigation.navigate('Add', {usuario : this.state.usuario}) }}
-        centerComponent={{ text: this.state.usuario.Nombreusuario, style: { color: '#fff', fontSize: 20 } }} ></Header>
+        centerComponent={{ text: this.state.usuario.Nombreusuario, onPress: () => this.props.navigation.navigate('Profile', {usuario : this.state.usuario}), style: { color: '#fff', fontSize: 20 } }} ></Header>
         <Picker selectedValue={this.state.categoria} onValueChange={this.cambiarCategoria}>
             <Picker.Item label="Pelicula" value="Pelicula" />
             <Picker.Item label="Anime" value="Anime" />
