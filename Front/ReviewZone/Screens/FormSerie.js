@@ -27,7 +27,7 @@ export default class FormSerie extends React.Component {
   SaveState = (asd, text) => {
     var regExp = /^[A-Za-z0-9À-ÿ][A-Za-z0-9À-ÿ -./,()]*$/;
     (regExp.test(text)) ? this.setState({ [asd] : text })
-      : this.setState({ value: "" })
+      : this.setState({ [asd]: "" })
   }
 
   PublicarReview = async() => {
@@ -47,7 +47,7 @@ export default class FormSerie extends React.Component {
       UsuarioId: this.state.usuario.UsuarioId
     }
 
-    if(this.comprobar(review)) {      
+    if(this.comprobar()) {      
       try {
         const response = await fetch('http://10.0.2.2:50921/api/Serie', {
           method: 'post',
@@ -67,8 +67,8 @@ export default class FormSerie extends React.Component {
     }
   }
 
-  comprobar (review) {
-    if (review.Titulo.lenght > 0 && review.Num_capitulos.lenght > 0 && review.Duracion_cap.lenght > 0 && review.Sinopsis.lenght > 0 && review.Op_personal.lenght > 0 && review.Reparto.lenght > 0 && review.Direccion.lenght > 0 && review.Guion.lenght > 0 && review.Productora.lenght > 0 && review.Generos.lenght > 0) {
+  comprobar () {
+    if (this.state.titulo.length > 0 && this.state.num_cap.length > 0 && this.state.dur_cap.length > 0 && this.state.sinopsis.length > 0 && this.state.op_perso.length > 0 && this.state.reparto.length > 0 && this.state.direccion.length > 0 && this.state.guion.length > 0 && this.state.productora.length > 0 && this.state.generos.length > 0 ) {
       return true;
     }
     else {

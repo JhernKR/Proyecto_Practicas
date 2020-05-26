@@ -24,7 +24,7 @@ export default class FormVideojuego extends React.Component {
   SaveState = (asd, text) => {
     var regExp = /^[A-Za-z0-9À-ÿ][A-Za-z0-9À-ÿ -./,()]*$/;
     (regExp.test(text)) ? this.setState({ [asd] : text })
-      : this.setState({ value: "" })
+      : this.setState({ [asd]: "" })
   }
 
   PublicarReview = async() => {
@@ -41,7 +41,7 @@ export default class FormVideojuego extends React.Component {
       UsuarioId: this.state.usuario.UsuarioId
     }
 
-    if(this.comprobar(review)) {      
+    if(this.comprobar()) {      
       try {
         const response = await fetch('http://10.0.2.2:50921/api/Videojuego', {
           method: 'post',
@@ -61,8 +61,8 @@ export default class FormVideojuego extends React.Component {
     }
   }
 
-  comprobar (review) {
-    if (review.Titulo.lenght > 0 && review.Duracion_aprox.lenght > 0 && review.Sinopsis.lenght > 0 && review.Op_personal.lenght > 0 && review.Plataformas.lenght > 0 && review.Requisitos.lenght > 0 && review.Company.lenght > 0 && review.Generos.lenght > 0) {
+  comprobar () {
+    if (this.state.titulo.length > 0 && this.state.dur_aprox.length > 0 && this.state.sinopsis.length > 0 && this.state.op_perso.length > 0 && this.state.generos.length > 0 && this.state.plataformas.length > 0 && this.state.requisitos.length > 0 && this.state.company.length > 0 ) {
       return true;
     }
     else {
