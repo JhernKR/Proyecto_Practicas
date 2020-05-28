@@ -100,5 +100,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     tintColor: 'rgba(0,0,0,0.2)',
+    marginTop: 120
   },
 });
