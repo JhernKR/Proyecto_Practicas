@@ -25,7 +25,8 @@ namespace TrabajoPracticas.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             if (!optionsBuilder.IsConfigured) {
-                optionsBuilder.UseMySql("Server=localhost;Database=ReviewZone;Uid=root;Pwd='';SslMode = none");
+                //optionsBuilder.UseMySql("Server=localhost;Database=ReviewZone;Uid=root;Pwd='';SslMode = none");
+                optionsBuilder.UseMySql("Server=proyecto.ci9dcn0m9sku.us-east-1.rds.amazonaws.com;Database=reviewzone;Uid=admin;Pwd='12345678'; SslMode = none");
             }
         }
 

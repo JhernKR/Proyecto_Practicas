@@ -49,7 +49,7 @@ export default class FormSerie extends React.Component {
 
     if(this.comprobar()) {      
       try {
-        const response = await fetch('http://10.0.2.2:50921/api/Serie', {
+        const response = await fetch('https://reviewzone.azurewebsites.net/api/Serie', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify( review ),

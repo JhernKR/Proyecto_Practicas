@@ -22,7 +22,7 @@ export default class Reviews extends React.Component {
 
   cargarReviews = async (categoria) => {
     try {
-      let response = await fetch(`http://10.0.2.2:50921/api/${categoria}`);
+      let response = await fetch(`https://reviewzone.azurewebsites.net/api/${categoria}`);
 
       let responseJson = response.ok ? await response.json() : Alert.alert("Error");
 

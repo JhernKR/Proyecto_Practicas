@@ -55,7 +55,7 @@ export default class BotonEnviar extends Component {
     }
     else {
       try {
-        fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
+        fetch(`https://reviewzone.azurewebsites.net/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
 
       } catch (error) {
         alert(error);
@@ -87,7 +87,7 @@ export default class BotonEnviar extends Component {
   ////
 
   crearUsuario = () => {
-    let url = 'http://10.0.2.2:50921/api/Usuario';
+    let url = 'https://reviewzone.azurewebsites.net/api/Usuario';
 
     fetch(url, {
       method: 'POST',

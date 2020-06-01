@@ -48,7 +48,7 @@ export default class BotonEnviar extends Component {
     }
     else {
       try {
-        //fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
+        //fetch(`https://reviewzone.azurewebsites.net/api/Usuario?nom_usu=${this.props.usu}&pass=${this.props.pass}`).then(this.handleEndFetch)
         this.props.request().then(this.handleEndFetch)
       } catch (error) {
         alert(error);
@@ -114,7 +114,7 @@ export default class BotonEnviar extends Component {
     }
     else {
       try {
-        let response = await fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${usu}&pass=${pass}`)
+        let response = await fetch(`https://reviewzone.azurewebsites.net/api/Usuario?nom_usu=${usu}&pass=${pass}`)
 
         let responseJson = response.ok ? await response.json() : alert('Error');
 

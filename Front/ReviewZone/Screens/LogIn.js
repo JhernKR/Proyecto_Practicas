@@ -43,7 +43,7 @@ export default class LogIn extends React.Component {
           </View>
           <View>
             <BotonEnviar validate = {() => {return !this.state.nom_usu.length == 0 && !this.state.password.length == 0}}
-            request = {() => fetch(`http://10.0.2.2:50921/api/Usuario?nom_usu=${this.state.nom_usu}&pass=${this.state.password}`)}
+            request = {() => fetch(`https://reviewzone.azurewebsites.net/api/Usuario?nom_usu=${this.state.nom_usu}&pass=${this.state.password}`)}
             handleRequest = {(responseJson) => {
               if(responseJson != null) {
               this.props.navigation.navigate('Reviews', {usuario: responseJson}) }

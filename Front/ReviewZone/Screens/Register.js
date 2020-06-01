@@ -27,7 +27,7 @@ export default class LogIn extends React.Component {
   }
 
   requestData = () => {
-    let url = 'http://10.0.2.2:50921/api/Usuario';
+    let url = 'https://reviewzone.azurewebsites.net/api/Usuario';
 
     return fetch(url, {
       method: 'POST',

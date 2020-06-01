@@ -39,7 +39,7 @@ export default class FormPelicula extends React.Component {
 
     if(this.comprobar()) {      
       try {
-        const response = await fetch('http://10.0.2.2:50921/api/Pelicula', {
+        const response = await fetch('https://reviewzone.azurewebsites.net/api/Pelicula', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify( review ),

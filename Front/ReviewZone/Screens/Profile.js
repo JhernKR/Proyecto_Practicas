@@ -23,7 +23,7 @@ export default class Profile extends React.Component {
 
   cargarReviews = async (categoria) => {
     try {
-      let response = await fetch(`http://10.0.2.2:50921/api/${categoria}/${this.state.usuario.UsuarioId}`);
+      let response = await fetch(`https://reviewzone.azurewebsites.net/api/${categoria}/${this.state.usuario.UsuarioId}`);
 
       let responseJson = response.ok ? await response.json() : Alert.alert("Error");
 

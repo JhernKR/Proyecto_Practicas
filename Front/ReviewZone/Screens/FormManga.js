@@ -45,7 +45,7 @@ export default class FormManga extends React.Component {
 
     if(this.comprobar()) {      
       try {
-        const response = await fetch('http://10.0.2.2:50921/api/Manga_Comic', {
+        const response = await fetch('https://reviewzone.azurewebsites.net/api/Manga_Comic', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify( review ),
